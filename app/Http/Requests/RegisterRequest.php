@@ -44,6 +44,7 @@ class RegisterRequest extends FormRequest
         $user->email = $validatedData['email'];
         $user->password = bcrypt($validatedData['password']);
     
+        $user->save();
         auth()->login($user);
     
         return true;

@@ -1,4 +1,6 @@
 <div>
+{{auth()->id()}}
+
     <form action="/register" method="post">
         @csrf
         <div>
