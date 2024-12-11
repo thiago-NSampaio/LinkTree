@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 
@@ -15,6 +16,12 @@ Route::middleware('guest')->group(function () {
 
 });
 
-Route::get('/logout',LogoutController::class)->middleware('auth')->name('logout');
+Route::middleware('auth')->group(function(){
+    Route::get('/dashboard',fn()=> 'dashboard ::'. auth()->id())->middleware('auth')->name('dashboard');
+    Route::get('/logout',LogoutController::class)->middleware('auth')->name('logout');
 
-Route::get('/dashboard',fn()=> 'dashboard ::'. auth()->id())->middleware('auth')->name('dashboard');
+    Route::get('/links/create',[LinkController::class,'create'])->name('links.create');
+    Route::post('/links/create',[LinkController::class,'store']);
+});
+
+
