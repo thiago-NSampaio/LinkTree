@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
+use App\Http\Controllers\Controller;
 
 use App\Http\Requests\RegisterRequest;
 
@@ -11,7 +12,6 @@ class RegisterController extends Controller
     }
 
     public function register(RegisterRequest $request){
-        // dd($request);
         if($request->tryToRegister()){
             return to_route('dashboard');
         }

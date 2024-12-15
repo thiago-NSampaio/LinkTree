@@ -32,6 +32,7 @@ class LinkController extends Controller
     {
         /** @var User $user */
         $user = auth()->user();
+        // O contexto é utilizado para criar links
         $user->links()->create($request->validated());
         return to_route('dashboard');
     }
